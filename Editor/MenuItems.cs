@@ -1,5 +1,6 @@
+
+#if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 
 namespace Tyrant.Coloring
 {
@@ -37,5 +38,23 @@ namespace Tyrant.Coloring
         {
             
         }
+
+        [MenuItem("Assets/Coloring/Blue", true)]
+        [MenuItem("Assets/Coloring/Red", true)]
+        [MenuItem("Assets/Coloring/Yellow", true)]
+        [MenuItem("Assets/Coloring/Custom Icon", true)]
+        [MenuItem("Assets/Coloring/Reset Icon", true)]
+        static bool ValidateFolder()
+        {
+            if (Selection.activeObject == null) return false;
+
+            var selected = Selection.activeObject;
+
+            var path = AssetDatabase.GetAssetPath(selected);
+
+            return AssetDatabase.IsValidFolder(path);
+        }
+        
     }
 }
+#endif
